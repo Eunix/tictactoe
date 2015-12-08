@@ -34,7 +34,7 @@ class Game < ActiveRecord::Base
 
   # Returns the total number of moves both of the playes
   def number_of_moves
-    (player_x_cells + player_o_cells).size
+    player_x_cells.size + player_o_cells.size
   end
 
   # Performs the next move of a player
@@ -42,7 +42,7 @@ class Game < ActiveRecord::Base
     if next_player == player_x
       player_x_cells << position
     else
-      player_y_cells << position
+      player_o_cells << position
     end
     save
   end
