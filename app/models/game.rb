@@ -70,13 +70,15 @@ class Game < ActiveRecord::Base
     number_of_moves % 2 == 0 ? player_x : player_o 
   end
 
+  # Winner is checked using Bitwise-AND (whether player's sum 
+  # contains some of the winning sum)
   def check_winning_sums
-    if WINNING_SUMS.include?(player_x_sum)
+    if WINNING_SUMS.any? { |s| s & player_x_sum == s }
       self.winner = player_x
-    elsif WINNING_SUMS.include?(player_o_sum)
+    elsif WINNING_SUMS.any? { |s| s & player_o_sum == s }
       self.winner = player_o
     end
-    self.state = 'finished' if winner
+    self.state = 'finished' if winner || number_of_moves > 8
   end
 
   def player_x_sum

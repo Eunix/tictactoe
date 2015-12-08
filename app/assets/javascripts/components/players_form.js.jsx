@@ -14,8 +14,8 @@ var PlayersForm = React.createClass({
     var playerX = this.state.playerX.trim();
     var playerO = this.state.playerO.trim();
     this.props.onPlayersFormSubmit({
-      player_x_name: playerX,
-      player_o_name: playerO
+      playerX: playerX,
+      playerO: playerO
     });
   },
 
@@ -51,6 +51,9 @@ var PlayersForm = React.createClass({
   },
 
   classes: function() {
-    return ['playersForm', this.props.gameIsStarted ? 'hidden' : ''].join(' ');
+    return [
+      'playersForm', 
+      this.props.gameIsStarted || this.props.gameState == 'finished' ? 'hidden' : ''
+    ].join(' ');
   }
 });

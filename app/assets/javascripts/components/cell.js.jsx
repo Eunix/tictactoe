@@ -3,6 +3,12 @@ var Cell = React.createClass({
     return { symbol: null };
   },
   
+  componentWillReceiveProps: function() {
+    if(this.props.gameIsStarted === false) {
+      this.setState({ symbol: null });
+    }
+  },
+
   render: function() {
     return (
       <div 
