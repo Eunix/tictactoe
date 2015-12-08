@@ -1,3 +1,81 @@
-// Place all the styles related to the games controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.field {
+  background-color: white;
+  border-radius: 6px;
+  width: 300px;
+  height: 300px;
+  padding: 5px;
+
+  .playersForm,
+  .matrix {
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .matrix {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+    .cell {
+      background-color: #9A8297;
+      margin: 3px;
+      width: 90px;
+      height: 90px;
+      border-radius: 6px;
+      cursor: pointer;
+      -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s;
+      position: relative;
+
+      &:hover {
+        background-color: #D0782A;
+      }
+    }
+
+    .cell.xSymbol:before, 
+    .cell.xSymbol:after {
+      position: absolute;
+      width: 6px;
+      height: 50px;
+      background-color: white;
+      display: block;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 3px;
+    }
+
+    .cell.xSymbol:before {
+      -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          -ms-transform: translate(-50%, -50%) rotate(45deg);
+              transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .cell.xSymbol:after {
+      -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          -ms-transform: translate(-50%, -50%) rotate(-45deg);
+              transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .cell.oSymbol:after {
+      position: absolute;
+      display: block;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: solid 6px white;
+      width: 44px;
+      height: 44px;
+      -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+    }
+  }
+}
