@@ -14,8 +14,8 @@ var PlayersForm = React.createClass({
     var playerX = this.state.playerX.trim();
     var playerO = this.state.playerO.trim();
     this.props.onPlayersFormSubmit({
-      playerX: playerX,
-      playerO: playerO
+      player_x_name: playerX,
+      player_o_name: playerO
     });
   },
 

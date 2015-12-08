@@ -1,7 +1,8 @@
 var GameField = React.createClass({
   getInitialState: function() {
     return {
-      gameIsStarted: false
+      gameIsStarted: false,
+      gameId: null 
     };
   },
 
@@ -9,8 +10,9 @@ var GameField = React.createClass({
     return (
       <div className="field">
         <Matrix 
-          onClick={this.onCellClick}
+          onCellClick={this.handleCellClick}
           gameIsStarted={this.state.gameIsStarted}
+          gameId={this.state.gameId}
         />
         <PlayersForm 
           onPlayersFormSubmit={this.handlePlayersFormSubmit}
@@ -21,36 +23,20 @@ var GameField = React.createClass({
   },
 
   handlePlayersFormSubmit: function(players) {
-    this.setState({gameIsStarted: true}); 
-    //$.post(
-      //'/games',
-      //{ players: this.state },
-      //function(data) {
-      //},
-      //'JSON'
-    //);
-  },
-
-  onNewGame: function() {
-    //gameState.reset();
-    return this.setState({
-      gameIsBeingPlayed: true
+    $.ajax({
+      url: '/games',
+      dataType: 'json',
+      type: 'POST',
+      data: { game: players },
+      success: function(data) {
+        this.setState({ 
+          gameIsStarted: true,
+          gameId: data.id
+        }); 
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(status, err.toString());
+      }.bind(this)
     });
   },
-
-  onCellClick: function() {
-    alert('wer');
-    //if (gameState.winner) {
-      //return this.setState({
-        //gameIsBeingPlayed: false
-      //});
-    //}
-  }
-  //onNewGame: ->
-    //gameState.reset()
-    //@setState gameIsBeingPlayed: true
-
-  //onCellClick: ->
-    //if gameState.winner
-      //@setState gameIsBeingPlayed: false
 });

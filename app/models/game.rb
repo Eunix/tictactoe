@@ -32,6 +32,14 @@ class Game < ActiveRecord::Base
 
   #before_save :check_winning_sums
 
+  def player_x_name=(name)
+    self.player_x = Player.find_or_create_by(name: name)
+  end
+
+  def player_o_name=(name)
+    self.player_o = Player.find_or_create_by(name: name)
+  end
+
   # Returns the total number of moves both of the playes
   def number_of_moves
     player_x_cells.size + player_o_cells.size
@@ -45,6 +53,11 @@ class Game < ActiveRecord::Base
       player_o_cells << position
     end
     save
+  end
+
+  # Returns last player's symbol
+  def last_symbol
+    number_of_moves % 2 == 0 ? 'o' : 'x' 
   end
 
   # Returns next player of the move. It is assumed that

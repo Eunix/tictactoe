@@ -5,8 +5,8 @@ var Matrix = React.createClass({
       cells.push(
         <Cell 
           key={i} 
-          index={i}
-          onClick={this.props.onClick}
+          position={i}
+          gameId={this.props.gameId}
         />
       );
     }

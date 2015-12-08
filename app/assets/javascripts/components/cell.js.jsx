@@ -7,28 +7,30 @@ var Cell = React.createClass({
     return (
       <div 
         className={this.classes()}
-        onMouseUp={this.clickHandler}
+        onMouseUp={this.handleCellClick}
       />
     )
   },
 
-  clickHandler: function() {
+  handleCellClick: function() {
     if (!this.state.symbol) {
-      this.setState({
-        symbol: 'x'
+      $.ajax({
+        url: '/games/' + this.props.gameId + '/next_move',
+        dataType: 'json',
+        type: 'PUT',
+        data: { position: this.props.position },
+        success: function(data) {
+          this.setState({ symbol: data.symbol });
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(status, err.toString());
+        }.bind(this)
       });
-      //gameState.updateState(this.props.index);
-      return this.props.onClick();
+      //this.props.onCellClick(this.props.position);
     }
   },
    
   classes: function() {
     return ['cell', this.state.symbol ? this.state.symbol + "Symbol" : ''].join(' ');
   }
-      
-  //clickHandler: ->
-    //if !@state.symbol
-      //@setState symbol: gameState.currentSymbol()
-      //gameState.updateState(@props.index)
-      //@props.onClick()
 });
