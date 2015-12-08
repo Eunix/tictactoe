@@ -78,6 +78,8 @@ var GameField = React.createClass({
         gameWinnerName: data.winner_name, 
         gameIsStarted: false
       });
+      
+      this.props.onGameFinish();
     }
 
     if(this.state.gameCurrentPlayer === this.state.playerO) {

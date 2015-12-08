@@ -78,6 +78,7 @@ class Game < ActiveRecord::Base
     elsif WINNING_SUMS.any? { |s| s & player_o_sum == s }
       self.winner = player_o
     end
+    winner.touch if winner
     self.state = 'finished' if winner || number_of_moves > 8
   end
 

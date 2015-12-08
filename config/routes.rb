@@ -3,5 +3,7 @@ Rails.application.routes.draw do
     put :next_move, on: :member
   end
 
+  resources :players, only: [:index]
+
   root 'games#new'
 end
