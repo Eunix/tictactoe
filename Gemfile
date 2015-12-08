@@ -11,6 +11,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 gem 'foundation-rails'
 gem 'react-rails', '~> 1.5.0'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'pry-byebug'

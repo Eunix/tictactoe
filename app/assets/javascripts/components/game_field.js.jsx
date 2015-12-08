@@ -14,14 +14,14 @@ var GameField = React.createClass({
   render: function() {
     return (
       <div className="field">
-        <CurrentPlayer 
-          gameCurrentPlayer={this.state.gameCurrentPlayer}
-          gameIsStarted={this.state.gameIsStarted}
-        />
         <Matrix 
           onCellClick={this.handleCellClick}
           gameIsStarted={this.state.gameIsStarted}
           gameId={this.state.gameId}
+        />
+        <CurrentPlayer 
+          gameCurrentPlayer={this.state.gameCurrentPlayer}
+          gameIsStarted={this.state.gameIsStarted}
         />
         <PlayersForm 
           onPlayersFormSubmit={this.handlePlayersFormSubmit}
