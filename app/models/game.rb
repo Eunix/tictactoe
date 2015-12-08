@@ -12,13 +12,13 @@
 #
 # The game starts with player_x's move
 class Game < ActiveRecord::Base
-  POSITION_MAPPING = [
+  POSITION_MAPPING = {
     1 => 1,  2 => 2,   3 => 4,
     4 => 8,  5 => 16,  6 => 32,
     7 => 64, 8 => 128, 9 => 256
-  ]
+  }
 
-  WINNING_SUMS = %w(7 56 73 84 146 273 292 448)
+  WINNING_SUMS = [7, 56, 73, 84, 146, 273, 292, 448]
 
   STATES = %w(new finished)
 
@@ -27,10 +27,13 @@ class Game < ActiveRecord::Base
 
   belongs_to :player_x, class_name: 'Player', foreign_key: 'player_x_id' 
   belongs_to :player_o, class_name: 'Player', foreign_key: 'player_o_id' 
+  belongs_to :winner, class_name: 'Player', foreign_key: 'winner_id' 
 
   validates :player_x, :player_o, presence: true
 
-  #before_save :check_winning_sums
+  before_save :check_winning_sums
+
+  delegate :name, to: :winner, prefix: true, allow_nil: true
 
   def player_x_name=(name)
     self.player_x = Player.find_or_create_by(name: name)
@@ -47,10 +50,11 @@ class Game < ActiveRecord::Base
 
   # Performs the next move of a player
   def next_move!(position)
+    return if state == 'finished'
     if next_player == player_x
-      player_x_cells << position
+      player_x_cells << position.to_i
     else
-      player_o_cells << position
+      player_o_cells << position.to_i
     end
     save
   end
@@ -64,5 +68,22 @@ class Game < ActiveRecord::Base
   # player_o has the first move
   def next_player
     number_of_moves % 2 == 0 ? player_x : player_o 
+  end
+
+  def check_winning_sums
+    if WINNING_SUMS.include?(player_x_sum)
+      self.winner = player_x
+    elsif WINNING_SUMS.include?(player_o_sum)
+      self.winner = player_o
+    end
+    self.state = 'finished' if winner
+  end
+
+  def player_x_sum
+    player_x_cells.inject(0) { |sum, c| sum + POSITION_MAPPING[c] }
+  end
+
+  def player_o_sum
+    player_o_cells.inject(0) { |sum, c| sum + POSITION_MAPPING[c] }
   end
 end

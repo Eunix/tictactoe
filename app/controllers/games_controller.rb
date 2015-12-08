@@ -10,9 +10,12 @@ class GamesController < ApplicationController
 
   def next_move
     @game = Game.find(params[:id])
-    if @game.next_move!(params[:position])
-      render json: { symbol: @game.last_symbol }
-    end
+    @game.next_move!(params[:position])
+    render json: { 
+      symbol: @game.last_symbol, 
+      state: @game.state,
+      winner_name: @game.winner_name
+    }
   end
 
   private

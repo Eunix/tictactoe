@@ -2,7 +2,9 @@ var GameField = React.createClass({
   getInitialState: function() {
     return {
       gameIsStarted: false,
-      gameId: null 
+      gameId: null,
+      gameState: 'new',
+      gameWinnerName: ''
     };
   },
 
@@ -39,4 +41,12 @@ var GameField = React.createClass({
       }.bind(this)
     });
   },
+
+  handleCellClick: function(data) {
+    if(data.state == 'finished') {
+      this.props.gameState = data.winner_name; 
+      this.props.gameWinnerName = data.winner_name; 
+      alert(data.winner_name);
+    }
+  }
 });

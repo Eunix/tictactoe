@@ -21,12 +21,12 @@ var Cell = React.createClass({
         data: { position: this.props.position },
         success: function(data) {
           this.setState({ symbol: data.symbol });
+          this.props.onCellClick(data);
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(status, err.toString());
         }.bind(this)
       });
-      //this.props.onCellClick(this.props.position);
     }
   },
    
