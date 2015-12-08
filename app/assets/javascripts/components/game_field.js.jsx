@@ -6,13 +6,18 @@ var GameField = React.createClass({
       gameState: 'new',
       gameWinnerName: '',
       playerX: '',
-      playerO: ''
+      playerO: '',
+      gameCurrentPlayer: ''
     };
   },
 
   render: function() {
     return (
       <div className="field">
+        <CurrentPlayer 
+          gameCurrentPlayer={this.state.gameCurrentPlayer}
+          gameIsStarted={this.state.gameIsStarted}
+        />
         <Matrix 
           onCellClick={this.handleCellClick}
           gameIsStarted={this.state.gameIsStarted}
@@ -46,7 +51,8 @@ var GameField = React.createClass({
       success: function(data) {
         this.setState({ 
           gameIsStarted: true,
-          gameId: data.id
+          gameId: data.id,
+          gameCurrentPlayer: this.state.playerX
         }); 
       }.bind(this),
       error: function(xhr, status, err) {
@@ -73,6 +79,12 @@ var GameField = React.createClass({
         gameIsStarted: false
       });
     }
+
+    if(this.state.gameCurrentPlayer === this.state.playerO) {
+      this.setState({ gameCurrentPlayer: this.state.playerX });
+    } else {
+      this.setState({ gameCurrentPlayer: this.state.playerO });
+    }
   },
 
   handleRestartButtonClick: function() {
@@ -81,7 +93,8 @@ var GameField = React.createClass({
       gameWinnerName: null, 
       gameIsStarted: true,
       playerX: this.state.playerO,
-      playerO: this.state.playerX
+      playerO: this.state.playerX,
+      gameCurrentPlayer: this.state.playerO
     },
     function() {
       this.createNewGame();

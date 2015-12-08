@@ -2,7 +2,7 @@ var Winner = React.createClass({
 
   render: function() {
     var info;
-    if(this.props.gameWinnerName == '') {
+    if(this.props.gameWinnerName === null || this.props.gameWinnerName === '') {
       info = <span>Nobody wins</span>;
     } else {
       info = <span>The winner is <strong>{this.props.gameWinnerName}</strong></span>

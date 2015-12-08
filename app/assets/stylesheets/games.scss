@@ -7,7 +7,8 @@
 
   .playersForm,
   .matrix,
-  .winner {
+  .winner,
+  .currentPlayer {
     &.hidden {
       display: none;
     }
