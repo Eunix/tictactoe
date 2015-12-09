@@ -33,12 +33,11 @@ feature 'Game' do
       fill_in('playerX', with: 'Player1')
       fill_in('playerO', with: 'Player2')
       click_button('Start new game')
-      find('.cell-1').trigger(:mouseup)
       find('.cell-2').trigger(:mouseup)
       find('.cell-5').trigger(:mouseup)
       find('.cell-3').trigger(:mouseup)
       find('.cell-9').trigger(:mouseup)
-      find('.cell-10').trigger(:mouseup) if page.has_css?('.cell-10')
+      find('.cell-1').trigger(:mouseup)
       expect(page).to have_content('The winner is Player1')
     end
   end
