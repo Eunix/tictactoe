@@ -28,6 +28,9 @@ require 'capybara/poltergeist'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  Capybara.register_driver :poltergeist_debug do |app|
+    Capybara::Poltergeist::Driver.new(app, inspector: true)
+  end
   # Capybara
   Capybara.javascript_driver = :poltergeist
 

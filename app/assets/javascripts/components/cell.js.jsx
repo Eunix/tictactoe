@@ -37,6 +37,10 @@ var Cell = React.createClass({
   },
    
   classes: function() {
-    return ['cell', this.state.symbol ? this.state.symbol + "Symbol" : ''].join(' ');
+    return [
+      'cell', 
+      'cell-' + this.props.position,
+      this.state.symbol ? this.state.symbol + "Symbol" : ''
+    ].join(' ');
   }
 });

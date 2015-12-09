@@ -45,6 +45,7 @@ var PlayersForm = React.createClass({
           value="Start new game" 
           className="button tiny"
           disabled={!this.valid()}
+          onClick={this.handleSubmit}
         />
       </form>
     )
