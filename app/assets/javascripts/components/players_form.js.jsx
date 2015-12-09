@@ -20,7 +20,7 @@ var PlayersForm = React.createClass({
   },
 
   valid: function() {
-    return (this.state.playerX && this.state.playerO);
+    return (this.state.playerX && this.state.playerO && this.state.playerX !== this.state.playerO);
   },
 
   render: function() {

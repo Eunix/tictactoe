@@ -82,10 +82,12 @@ class Game < ActiveRecord::Base
     self.state = 'finished' if winner || number_of_moves > 8
   end
 
+  # Retuns sum of player_x's positions
   def player_x_sum
     player_x_cells.inject(0) { |sum, c| sum + POSITION_MAPPING[c] }
   end
 
+  # Retuns sum of player_o's positions
   def player_o_sum
     player_o_cells.inject(0) { |sum, c| sum + POSITION_MAPPING[c] }
   end
