@@ -37,6 +37,9 @@ feature 'Game' do
       find('.cell-5').trigger(:mouseup)
       find('.cell-3').trigger(:mouseup)
       find('.cell-9').trigger(:mouseup)
+      expect(page).to have_css('.xSymbol', count: 2)
+      expect(page).to have_css('.oSymbol', count: 2)
+
       find('.cell-1').trigger(:mouseup)
       expect(page).to have_content('The winner is Player1')
     end

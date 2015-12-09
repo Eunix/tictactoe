@@ -32,7 +32,7 @@ RSpec.configure do |config|
     Capybara::Poltergeist::Driver.new(app, inspector: true)
   end
   # Capybara
-  Capybara.javascript_driver = :poltergeist
+  Capybara.javascript_driver = :poltergeist_debug
 
   # FactoryGirl
   config.include FactoryGirl::Syntax::Methods
