@@ -17,6 +17,7 @@ RSpec.describe GamesController, type: :controller do
     it 'performs next move of game' do
       put :next_move, id: game.id, position: 1
       expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
     end
   end
 end
