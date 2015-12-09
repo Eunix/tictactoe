@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  # POST /games
   def create
     @game = Game.new(game_params)
     if @game.save
@@ -8,6 +9,7 @@ class GamesController < ApplicationController
     end
   end
 
+  # PUT /games/:id/next_move
   def next_move
     @game = Game.find(params[:id])
     @game.next_move!(params[:position])

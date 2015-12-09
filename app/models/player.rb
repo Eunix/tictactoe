@@ -7,12 +7,14 @@ class Player < ActiveRecord::Base
 
   validates :name, uniqueness: true, presence: true
 
+  # Number of total player's games
   def games
     games_as_player_o + games_as_player_x
   end
 
   private
 
+  # Update score as number of games as a winner
   def update_score
     update_column('score', games_as_winner.size)
   end
