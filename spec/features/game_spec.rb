@@ -38,6 +38,7 @@ feature 'Game' do
       find('.cell-5').trigger(:mouseup)
       find('.cell-3').trigger(:mouseup)
       find('.cell-9').trigger(:mouseup)
+      sleep 3
       expect(page).to have_content('The winner is Player1')
     end
   end
