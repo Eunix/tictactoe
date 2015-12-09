@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require es5-shim
 //= require react
 //= require react_ujs
 //= require components

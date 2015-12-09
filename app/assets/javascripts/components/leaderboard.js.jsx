@@ -3,7 +3,7 @@ var Leaderboard = React.createClass({
   render: function() {
     var playerRows = this.props.playersData.map(function(player) {
       return (
-        <tr>
+        <tr key={player.id}>
           <td>{player.name}</td>
           <td>{player.score}</td>
         </tr>

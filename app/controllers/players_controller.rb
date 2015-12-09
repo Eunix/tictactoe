@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   def index
-    render json: Player.all.order(score: :desc).limit(7)
+    @players = Player.all.order(score: :desc).limit(7)
+    render json: @players   
   end
 end
