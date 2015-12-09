@@ -9,7 +9,7 @@ RSpec.describe Player, type: :model do
     expect(create(:player)).to be_valid
   end
 
-  describe '#games' do
+  describe '.games' do
     let(:player1) { create(:player) }
     let(:player2) { create(:player) }
     let!(:game1) { create(:game, player_o: player1) }
@@ -19,6 +19,17 @@ RSpec.describe Player, type: :model do
   
     it 'returns total number of games' do
       expect(player1.games.size).to eq(3)
+    end
+  end
+
+  describe '.update_score' do
+    let(:player) { create(:player) }
+    
+    before { create_list(:game, 2, winner: player) }
+
+    it 'updates score as number of wins' do
+      player.reload
+      expect{ player.touch }.to change{ player.score }.from(0).to(2)
     end
   end
 end
