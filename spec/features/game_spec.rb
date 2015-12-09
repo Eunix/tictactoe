@@ -38,7 +38,7 @@ feature 'Game' do
       find('.cell-5').trigger(:mouseup)
       find('.cell-3').trigger(:mouseup)
       find('.cell-9').trigger(:mouseup)
-      sleep 10 # Travis is slow
+      find('.cell-10').trigger(:mouseup) if page.has_css?('.cell-10')
       expect(page).to have_content('The winner is Player1')
     end
   end
