@@ -3,6 +3,7 @@ var TicTacToe = React.createClass({
     return { playersData: [] };
   },
 
+  // Loads leaderboard from server
   loadPlayersFromServer: function() {
     $.ajax({
       url: '/players',
@@ -16,7 +17,6 @@ var TicTacToe = React.createClass({
       }.bind(this)
     });
   },
-
 
   componentDidMount: function() {
     this.loadPlayersFromServer();
@@ -39,6 +39,7 @@ var TicTacToe = React.createClass({
     )
   },
 
+  // Handles game finish to load last leaders
   handleGameFinish: function() {
     this.loadPlayersFromServer();
   }

@@ -18,6 +18,7 @@ var Cell = React.createClass({
     )
   },
 
+  // Handles click on cell and send request to perform next move
   handleCellClick: function() {
     if (!this.state.symbol) {
       $.ajax({
@@ -36,6 +37,7 @@ var Cell = React.createClass({
     }
   },
    
+  // xSymbol and oSymbol classes are for display x and o correspondingly 
   classes: function() {
     return [
       'cell', 

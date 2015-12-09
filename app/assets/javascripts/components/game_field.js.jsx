@@ -37,6 +37,7 @@ var GameField = React.createClass({
     );
   },
 
+  // Send request to create a new game and get ID of the game
   createNewGame: function() {
     var players = {
       player_x_name: this.state.playerX,
@@ -61,6 +62,7 @@ var GameField = React.createClass({
     });
   },
 
+  // Handles the new game form submit with players names 
   handlePlayersFormSubmit: function(players) {
     this.setState({
       playerX: players.playerX,
@@ -71,6 +73,9 @@ var GameField = React.createClass({
     });
   },
 
+  // Handles cell click to check the game status. If state is finished
+  // the game is over. In addition this handler performs current player
+  // changes
   handleCellClick: function(data) {
     if(data.state == 'finished') {
       this.setState({
@@ -89,6 +94,7 @@ var GameField = React.createClass({
     }
   },
 
+  // Handles restart game buttons: triggers create new game
   handleRestartButtonClick: function() {
     this.setState({
       gameState: 'new', 

@@ -9,6 +9,7 @@ var PlayersForm = React.createClass({
     this.setState(state);
   },
 
+  // Handles submit and triggers onPlayerFormSubmit of GameField
   handleSubmit: function(e) {
     e.preventDefault();
     var playerX = this.state.playerX.trim();
@@ -19,6 +20,9 @@ var PlayersForm = React.createClass({
     });
   },
 
+  // Validates players name:
+  // - cannot be blank
+  // - cannot be the same
   valid: function() {
     return (this.state.playerX && this.state.playerO && this.state.playerX !== this.state.playerO);
   },

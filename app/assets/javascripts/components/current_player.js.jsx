@@ -8,6 +8,7 @@ var CurrentPlayer = React.createClass({
     )
   },
 
+  // Hides current player's move before game is started
   classes: function() {
     return ['currentPlayer', this.props.gameIsStarted ? '' : 'hidden'].join(' ');
   }
