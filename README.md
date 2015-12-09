@@ -35,6 +35,15 @@ game.
 
 ## Development tools
 
+### Database
+
+Application uses sqlite 3 as a database
+
+```sh
+rake db:create
+rake db:schema:load
+```
+
 ### Server
 
 ```sh
