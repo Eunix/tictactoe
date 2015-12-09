@@ -1,5 +1,7 @@
 # TicTacToe
 
+[![Build Status](https://travis-ci.org/Eunix/tictactoe.svg?branch=master)](https://travis-ci.org/Eunix/tictactoe)
+
 A [TicTacToe](https://en.wikipedia.org/wiki/Tic-tac-toe) game using ReactJS and Rails
 
 ## A little bit of math
